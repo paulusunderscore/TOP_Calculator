@@ -1,25 +1,12 @@
-const add = function(a, b){
-    return a + b;
-}
-
-const sub = function(a, b){
-    return a - b;
-}
-
-const multiply = function(a, b){
-    return a * b;
-}
-
-const divide = function(a, b){
-    return a / b;
-}
-
 const operate = {
-    '+' : add,
-    '-' : sub,
-    '*' : multiply,
-    '/' : divide
+    '+' : (a, b) => a + b,
+    '-' : (a, b) => a - b,
+    '*' : (a, b) => a * b,
+    '/' : (a, b) => a / b,
+
+    //To use: operate['+'](2,3) = 5
 }
+
 
 //buttons declaration
 const btnNumbers = document.querySelectorAll(".numbers");
@@ -31,6 +18,7 @@ let op = 0;
 let var1 = [];
 let varOp = [];
 let var2 = [];
+let result;
 
 console.log('oye');
 btnNumbers.forEach((button) => {
@@ -51,11 +39,21 @@ btnNumbers.forEach((button) => {
 console.log('oye');
 btnOpp.forEach((button) => {
     button.addEventListener("click", () => {
-        varOp = varOp.concat(button.id);
-        alert(button.id);
-        console.log('varOp: '+varOp);
         //add operator count
         op += 1;
+        varOp = varOp.concat(button.id);
+        if(op == 1){
+            alert(button.id);
+            console.log('varOp: ' + varOp);
+        }
+        else if(op == 2){
+            var1 = operate[varOp[op-1]](Number(var1.join('')), Number(var2.join('')));
+            alert(var1);
+        }
+        else {
+            var1 = operate[varOp[op-1]](var1, Number(var2.join('')));
+        }
+        
     });
 });
 
