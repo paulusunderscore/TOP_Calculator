@@ -42,17 +42,18 @@ btnOpp.forEach((button) => {
         //add operator count
         op += 1;
         varOp = varOp.concat(button.id);
-        if(op == 1){
-            alert(button.id);
-            console.log('varOp: ' + varOp);
-        }
-        else if(op == 2){
-            var1 = operate[varOp[op-1]](Number(var1.join('')), Number(var2.join('')));
+        if(op == 2){
+            var1 = operate[varOp[op-2]](Number(var1.join('')), Number(var2.join('')));
             alert(var1);
+            var2 = [];
         }
-        else {
-            var1 = operate[varOp[op-1]](var1, Number(var2.join('')));
+        else if(op > 2){
+            var1 = operate[varOp[op-2]](var1, Number(var2.join('')));
+            var2 = [];
+            alert(var1);
+            
         }
+        console.log('varOp : ' + varOp);
         
     });
 });
