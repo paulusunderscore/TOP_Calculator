@@ -9,9 +9,7 @@ const operate = {
 
 
 //buttons declaration
-const btnNumbers = document.querySelectorAll(".numbers");
-const btnOpp = document.querySelectorAll(".operators");
-
+const btn = document.querySelectorAll(".buttons");
 
 //loop to wait until two operation is used
 let op = 0;
@@ -19,6 +17,13 @@ let var1 = [];
 let varOp = [];
 let var2 = [];
 let result;
+let input = [];
+
+btn.forEach((button) => {
+    if(isNaN(btn.id)){
+
+    }
+});
 
 console.log('oye');
 btnNumbers.forEach((button) => {
