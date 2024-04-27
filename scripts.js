@@ -10,6 +10,8 @@ const operate = {
 
 //buttons declaration
 const btn = document.querySelectorAll(".buttons");
+const equalBtn = document.querySelector(".equal");
+const display = document.querySelector(".calc-display");
 
 //loop to wait until two operation is used
 let op = 0;
@@ -17,16 +19,18 @@ let var1 = [];
 let varOp = [];
 let var2 = [];
 let result;
-let input = [];
+let userInput = [];
+let displayText = '';
 
 btn.forEach((button) => {
-    if(isNaN(btn.id)){
+    button.addEventListener("click", () => {
+        userInput = userInput.concat(button.id);
 
-    }
+    })
 });
 
 console.log('oye');
-btnNumbers.forEach((button) => {
+btn.forEach((button) => {
     button.addEventListener("click", () => {
         if(op!=0){
             var2 = var2.concat(button.id);
