@@ -1,3 +1,5 @@
+const { equal } = require("assert");
+
 const operate = {
     '+' : (a, b) => a + b,
     '-' : (a, b) => a - b,
@@ -25,12 +27,26 @@ let displayText = '';
 btn.forEach((button) => {
     button.addEventListener("click", () => {
         userInput = userInput.concat(button.id);
-
+        console.log(userInput);
+        //check if user used multiply or divide symbol for better visual
+        if(button.id === '*'){
+            display.textContent += 'x';
+        }
+        else if(button.id === '/'){
+            display.textContent += ':';
+        }
+        else {
+            display.textContent += button.id;
+        }
     })
 });
 
+equalBtn.addEventListener("click", () => {
+    
+});
+
 console.log('oye');
-btn.forEach((button) => {
+/*btn.forEach((button) => {
     button.addEventListener("click", () => {
         if(op!=0){
             var2 = var2.concat(button.id);
@@ -66,6 +82,6 @@ btnOpp.forEach((button) => {
         
     });
 });
-
+*/
 
 
