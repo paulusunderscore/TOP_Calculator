@@ -1,12 +1,17 @@
-//test: vtes = ['4', '+', '10', '-', '7']
+function addition(a, b){
+    return a + b;
+}
 
-const operate = {
-    '+' : (a, b) => a + b,
-    '-' : (a, b) => a - b,
-    '*' : (a, b) => a * b,
-    '/' : (a, b) => a / b,
+function subtraction(a, b){
+    return a - b;
+}
 
-    //To use: operate['+'](2,3) = 5
+function multiplication(a, b){
+    return a * b;
+}
+
+function division(a, b){
+    return a / b;
 }
 
 
@@ -14,18 +19,25 @@ const operate = {
 const btn = document.querySelectorAll(".buttons");
 const equalBtn = document.querySelector(".equal");
 const display = document.querySelector(".calc-display");
+const clrBtn = document.querySelector("#clear");
 
 //loop to wait until two operation is used
 let op = [];
 let var1;
 let var2;
 let result;
-let userInput = '';
-let displayText = '';
-let data = [];
+let userInput;
+let data;
+
+display.textContent = '0';
 
 btn.forEach((button) => {
     button.addEventListener("click", () => {
+        if(display.textContent == '0' || isNaN(var1)){
+            display.textContent = '';
+            var1 = null;
+            userInput = '';
+        }
         userInput += String(button.id);
         console.log(userInput);
         //check if user used multiply or divide symbol for better visual
@@ -42,6 +54,8 @@ btn.forEach((button) => {
 });
 
 equalBtn.addEventListener("click", () => {
+    
+    //regex code to join multiple numbers as one and separate the operator
     data = userInput.match(/[0-9]+|[^0-9]/g);
 
     for(let i = 0; i < data.length; i++){
@@ -57,53 +71,49 @@ equalBtn.addEventListener("click", () => {
 
         if(i % 2 != 0){
             op = data[i];
-            console.log('op : ', op);
-            var1 = operate[op](var1, var2);
-            console.log(var1, op, var2);
+
+            //switch case:
+            switch(op){
+                case '+':
+                    var1 = addition(var1, var2);
+                    break;
+                
+                case '-':
+                    var1 = subtraction(var1, var2);
+                    break;
+                
+                case '*':
+                    var1 = multiplication(var1, var2);
+                    break;
+
+                case '/':
+                    var1 = division(var1, var2);
+                    break;
+
+                default:
+                    var1 = NaN;
+                    
+            }
         }
     }
+    if(isNaN(var1)){
+        display.textContent = 'Syntax Error';
+    }
+    else{
+        display.textContent = String(var1);
+    }
     console.log('result : ', var1);
+    userInput = String(var1);
     return var1;
     
 });
 
-console.log('oye');
-/*btn.forEach((button) => {
-    button.addEventListener("click", () => {
-        if(op!=0){
-            var2 = var2.concat(button.id);
-            alert(button.id);
-            console.log('var2: '+var2);
-        }
-        else {
-            var1 = var1.concat(button.id);
-            alert(button.id);
-            console.log('var1: '+var1);
-        }
-    });
+clrBtn.addEventListener("click", () => {
+    userInput = '';
+    var1 = null;
+    display.textContent = '0';
 });
 
-console.log('oye');
-btnOpp.forEach((button) => {
-    button.addEventListener("click", () => {
-        //add operator count
-        op += 1;
-        varOp = varOp.concat(button.id);
-        if(op == 2){
-            var1 = operate[varOp[op-2]](Number(var1.join('')), Number(var2.join('')));
-            alert(var1);
-            var2 = [];
-        }
-        else if(op > 2){
-            var1 = operate[varOp[op-2]](var1, Number(var2.join('')));
-            var2 = [];
-            alert(var1);
-            
-        }
-        console.log('varOp : ' + varOp);
-        
-    });
-});
-*/
+
 
 
