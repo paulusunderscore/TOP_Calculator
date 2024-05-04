@@ -47,6 +47,9 @@ btn.forEach((button) => {
         else if(button.id == '/'){
             display.textContent += ':';
         }
+        else if(button.id == '~'){
+            display.textContent += '-';
+        }
         else {
             display.textContent += button.id;
         }
@@ -56,7 +59,10 @@ btn.forEach((button) => {
 equalBtn.addEventListener("click", () => {
     
     //regex code to join multiple numbers as one and separate the operator
-    data = userInput.match(/[0-9]+|[^0-9]/g);
+    //data = userInput.match(/[0-9]+|[^0-9]/g);
+    data = userInput.match(/(-?\d+(\.\d+)?|\D)/g);
+    console.log('data : ', data);
+    console.log('userInput : ', userInput);
 
     for(let i = 0; i < data.length; i++){
         if(i == 0 || i % 2 == 0){
@@ -78,7 +84,7 @@ equalBtn.addEventListener("click", () => {
                     var1 = addition(var1, var2);
                     break;
                 
-                case '-':
+                case '~':
                     var1 = subtraction(var1, var2);
                     break;
                 
