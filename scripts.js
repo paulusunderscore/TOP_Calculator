@@ -59,6 +59,7 @@ btn.forEach((button) => {
 equalBtn.addEventListener("click", () => {
     
     //regex code to join multiple numbers as one and separate the operator
+    //update old regex to new ones that will split dotted decimal and negative numbers as one element
     //data = userInput.match(/[0-9]+|[^0-9]/g);
     data = userInput.match(/(-?\d+(\.\d+)?|\D)/g);
     console.log('data : ', data);
