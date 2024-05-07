@@ -39,7 +39,7 @@ btn.forEach((button) => {
             userInput = '';
         }
         userInput += String(button.id);
-        console.log(userInput);
+        //console.log(userInput);
         //check if user used multiply or divide symbol for better visual
         if(button.id == '*'){
             display.textContent += 'x';
@@ -63,17 +63,17 @@ equalBtn.addEventListener("click", () => {
     //data = userInput.match(/[0-9]+|[^0-9]/g);
     //data = userInput.match(/(-?\d+(\.\d+)?|\D)/g);
     data = userInput.match(/(-?\d+(\.\d+)?(?:e\+\d+)?|\D)/g);
-    console.log('data : ', data);
-    console.log('userInput : ', userInput);
+    //console.log('data : ', data);
+    //console.log('userInput : ', userInput);
 
     for(let i = 0; i < data.length; i++){
         if(i == 0 || i % 2 == 0){
             if(var1 == null){
                 var1 = Number(data[i]);
-                console.log('var1 : ', var1);
+                //console.log('var1 : ', var1);
             }
             var2 = Number(data[i+2]);
-            console.log('var2 : ', var2);
+            //console.log('var2 : ', var2);
                              
         }
 
@@ -110,7 +110,7 @@ equalBtn.addEventListener("click", () => {
     else{
         display.textContent = String(var1);
     }
-    console.log('result : ', var1);
+    //console.log('result : ', var1);
     userInput = String(var1);
     return var1;
     
